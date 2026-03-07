@@ -1,52 +1,54 @@
-export default function Contact(){
+export default function ContactPage() {
+  return (
+    <main className="container">
+      <section className="paper">
+        <h1 className="pageTitle">Contact</h1>
+        <p className="pageLead">
+          Pour toute question liée au catalogue, aux emprunts ou à l’accès, contactez le service bibliothèque.
+        </p>
 
-return(
-    <main className="page">
-      <h1>Contact the University Library</h1>
+        <div className="split">
+          <div className="infoCard">
+            <div className="infoCard__title">Coordonnées</div>
+            <p className="p">
+              <strong>Bibliothèque Universitaire</strong><br />
+              Campus Universitaire<br />
+              Ville, Pays
+            </p>
+            <p className="p">
+              <strong>Email :</strong> bibliouni@university.edu<br />
+              <strong>Téléphone :</strong> +212 6 00 00 00 00
+            </p>
 
-      <p>
-        If you have questions about borrowing books, library resources,
-        or access to the system, you can contact the library staff using
-        the information below.
-      </p>
+            <div className="muted">
+              Horaires : Lun–Ven 08:00–20:00 • Sam 09:00–16:00 • Dim fermé
+            </div>
+          </div>
 
-      <h2>Library Information</h2>
+          <form className="form">
+            <div className="field">
+              <label className="label">Nom</label>
+              <input className="input" type="text" placeholder="Votre nom" />
+            </div>
 
-      <p>
-        <strong>University Library</strong><br />
-        University Campus<br />
-        123 Academic Street<br />
-        City, Country
-      </p>
+            <div className="field">
+              <label className="label">Email</label>
+              <input className="input" type="email" placeholder="Votre email" />
+            </div>
 
-      <p>
-        <strong>Email:</strong> library@university.edu<br />
-        <strong>Phone:</strong> +123 456 789
-      </p>
+            <div className="field">
+              <label className="label">Message</label>
+              <textarea className="textarea" placeholder="Écrivez votre message..." />
+            </div>
+            <br></br>
+            <button className="btn btn--primary" type="button">
+              Envoyer
+            </button>
 
-      <h2>Opening Hours</h2>
-
-      <p>
-        Monday – Friday: 8:00 AM – 8:00 PM <br />
-        Saturday: 9:00 AM – 4:00 PM <br />
-        Sunday: Closed
-      </p>
-
-      <h2>Contact Form</h2>
-
-      <form className="contact-form">
-        <label>Name</label>
-        <input type="text" placeholder="Your name" />
-
-        <label>Email</label>
-        <input type="email" placeholder="Your email" />
-
-        <label>Message</label>
-        <textarea placeholder="Write your message here"></textarea>
-
-        <button type="submit">Send Message</button>
-      </form>
+           
+          </form>
+        </div>
+      </section>
     </main>
-
-)
+  );
 }

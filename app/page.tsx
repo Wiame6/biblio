@@ -1,77 +1,109 @@
-import CardModern from "./components/CardModern";
-
 export default function Home() {
+
+  const books = [
+    {
+      category: "INFORMATIQUE",
+      title: "Intelligence Artificielle - Fondements",
+      author: "S. Russell",
+      desc: "Un incontournable pour comprendre les bases de l’IA moderne.",
+    },
+    {
+      category: "MÉTHODOLOGIE",
+      title: "Méthodes de Recherche Scientifique",
+      author: "M. Grawitz",
+      desc: "Guide pratique pour réussir les mémoires et thèses universitaires.",
+    },
+    {
+      category: "ÉCONOMIE",
+      title: "Économie Internationale",
+      author: "P. Krugman",
+      desc: "Référence claire sur les échanges mondiaux et politiques commerciales.",
+    },
+    {
+      category: "MÉDECINE",
+      title: "Atlas d’Anatomie Humaine",
+      author: "F. Netter",
+      desc: "Illustrations détaillées pour les étudiants en santé.",
+    },
+  ];
+
   return (
-    <main className="page">
+    <main className="container">
+
+      {/* HERO */}
       <section className="hero">
-        <div className="hero-content">
-          <span className="pill">Bibliothèque Universitaire • Accès réservé</span>
-          <h1>Gérez et consultez le catalogue universitaire en toute simplicité</h1>
-          <p>
-            Une plateforme dédiée aux <strong>étudiants</strong>, <strong>professeurs</strong> et au
-            <strong> responsable de la bibliothèque</strong> : emprunts, retours, suivi et disponibilité.
-          </p>
 
-          <div className="hero-actions">
-            <a className="btn btn-primary" href="#catalogue">
-              Explorer le catalogue
-            </a>
-            <a className="btn btn-outline" href="/about">
-              En savoir plus
-            </a>
-          </div>
+        <div className="hero__tag">
+          BIBLIOTHÈQUE UNIVERSITAIRE
         </div>
 
-        <div className="hero-card">
-          <div className="hero-card-title">Fonctionnalités clés</div>
-          <ul className="checklist">
-            <li>Connexion uniquement pour membres de l’université</li>
-            <li>Catalogue avec disponibilité en temps réel</li>
-            <li>Emprunts, retours, historique</li>
-            <li>Gestion centralisée par le responsable</li>
-          </ul>
-          <div className="hero-card-footer">
-            <span className="dot" />
-            Service Bibliothèque — Université
-          </div>
+        <h1 className="hero__title">
+          Découvrez des milliers de livres pour réussir votre parcours.
+        </h1>
+
+        <p className="hero__subtitle">
+          BiblioUni vous donne accès à des ouvrages académiques,
+          des manuels spécialisés et des ressources récentes
+          pour toutes les filières.
+        </p>
+
+        <div className="hero__actions">
+          <a className="btn btn--light" href="#popular">
+            Voir la bibliothèque
+          </a>
+
+          <a className="btn btn--outline" href="/login">
+            Se connecter
+          </a>
         </div>
+
       </section>
 
-      <section id="catalogue" className="section">
-        <header className="section-head">
-          <h2>Catalogue</h2>
-          <p>Exemples d’ouvrages.</p>
-        </header>
 
-        <div className="books-grid">
-          <CardModern
-            id="1"
-            imageUrl="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=1400&auto=format&fit=crop"
-            category="Informatique"
-            status="available"
-            title="Clean Code"
-            subtitle="Robert C. Martin • Génie logiciel"
-          />
+      {/* LIVRES POPULAIRES */}
 
-          <CardModern
-            id="2"
-            imageUrl="https://images.unsplash.com/photo-1455885666463-3d4451c84f66?q=80&w=1400&auto=format&fit=crop"
-            category="Mathématiques"
-            status="borrowed"
-            title="Analyse avancée"
-            subtitle="Cours universitaire • Exercices"
-          />
+      <section id="popular" className="section">
 
-          <CardModern
-            id="3"
-            imageUrl="https://images.unsplash.com/photo-1524578271613-bd7c8c1b4b27?q=80&w=1400&auto=format&fit=crop"
-            category="Économie"
-            status="reserved"
-            title="Microéconomie"
-            subtitle="Principes & applications"
-          />
+        <div className="section__head">
+          <h2 className="section__title">
+            Livres populaires
+          </h2>
+
+          <span className="section__meta">
+            Mise à jour hebdomadaire
+          </span>
         </div>
+
+        <div className="grid">
+
+          {books.map((book) => (
+
+            <article key={book.title} className="book">
+
+              <div className="book__category">
+                {book.category}
+              </div>
+
+              <h3 className="book__title">
+                {book.title}
+              </h3>
+
+              <div className="book__author">
+                {book.author}
+              </div>
+
+              <p className="book__desc">
+                {book.desc}
+              </p>
+
+            </article>
+
+          ))}
+
+        </div>
+
       </section>
+
     </main>
   );
 }

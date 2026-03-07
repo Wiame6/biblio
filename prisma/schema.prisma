@@ -1,0 +1,81 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  password  String
+  role      UserRole
+  phone     String?
+  address   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  loans     Loan[]
+  
+  @@index([email])
+  @@index([role])
+}
+
+enum UserRole {
+  STUDENT
+  PROFESSOR
+  LIBRARIAN
+}
+
+model Book {
+  id              String   @id @default(cuid())
+  title           String
+  author          String
+  isbn            String?  @unique
+  publisher       String?
+  publishedYear   Int?
+  category        String?
+  totalCopies     Int      @default(1)
+  availableCopies Int      @default(1)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  loans           Loan[]
+  
+  @@index([category])
+  @@index([author])
+}
+
+model Loan {
+  id          String     @id @default(cuid())
+  bookId      String
+  userId      String
+  requestDate DateTime   @default(now())
+  approvedBy  String?
+  approvedAt  DateTime?
+  loanDate    DateTime?
+  dueDate     DateTime?
+  returnDate  DateTime?
+  status      LoanStatus @default(PENDING)
+  notes       String?
+  
+  book        Book       @relation(fields: [bookId], references: [id], onDelete: Cascade)
+  user        User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  
+  @@index([bookId])
+  @@index([userId])
+  @@index([status])
+}
+
+enum LoanStatus {
+  PENDING
+  APPROVED
+  DENIED
+  RETURNED
+  OVERDUE
+}

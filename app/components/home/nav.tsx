@@ -2,11 +2,16 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+
+const navItems = [
+  { href: "/", label: "Accueil" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
+  { href: "/login", label: "Connexion" },
+];
 
 export default function Nav() {
   const pathname = usePathname();
-  const [open, setOpen] = useState(false);
 
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/";
@@ -15,41 +20,24 @@ export default function Nav() {
 
   return (
     <header className="nav">
-      <div className="nav-container">
-        <Link href="/" className="logo">
-          📚 Biblio
+      <div className="nav__container">
+        <Link href="/" className="nav__brand">
+          <span className="nav__logo" aria-hidden>📚</span>
+          <span className="nav__title">BiblioUni</span>
         </Link>
 
-        {/* Desktop */}
-        <nav className="nav-links">
-          <Link href="/" className={isActive("/") ? "active" : ""}>
-            Home
-          </Link>
-          <Link href="/about" className={isActive("/about") ? "active" : ""}>
-            About
-          </Link>
-          <Link href="/contact" className={isActive("/contact") ? "active" : ""}>
-            Contact
-          </Link>
+        <nav className="nav__links" aria-label="Navigation principale">
+          {navItems.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={isActive(item.href) ? "nav__link nav__link--active" : "nav__link"}
+            >
+              {item.label}
+            </Link>
+          ))}
         </nav>
-
-        {/* Mobile Button */}
-        <button
-          className="burger"
-          onClick={() => setOpen(!open)}
-        >
-          ☰
-        </button>
       </div>
-
-      {/* Mobile Menu */}
-      {open && (
-        <div className="mobile-menu">
-          <Link href="/" onClick={() => setOpen(false)}>Home</Link>
-          <Link href="/about" onClick={() => setOpen(false)}>About</Link>
-          <Link href="/contact" onClick={() => setOpen(false)}>Contact</Link>
-        </div>
-      )}
     </header>
   );
 }
