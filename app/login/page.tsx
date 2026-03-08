@@ -11,7 +11,7 @@ export default function LoginPage() {
           <form className="form">
             <div className="field">
               <label className="label">Email universitaire</label>
-              <input className="input" type="email" placeholder="nom.prenom@univ.ma" />
+              <input className="input" type="email"  name="email" placeholder="nom.prenom@univ.ma" />
             </div>
 
             <div className="field">
