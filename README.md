@@ -34,3 +34,24 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Application Python Streamlit (Gestion des bons repas CHU Oujda)
+
+Une application simple de gestion des bons repas est disponible dans `streamlit_app.py` avec SQLite.
+
+### Lancer l'application
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements_streamlit.txt
+streamlit run streamlit_app.py
+```
+
+### Fonctionnalités
+
+- Ajouter des bénéficiaires (nom, service, matricule)
+- Émettre des bons repas (date, type de repas, montant, notes)
+- Tableau de bord avec historique des bons repas
+
+La base de données SQLite est créée automatiquement dans `bon_repas_chu_oujda.db`.
